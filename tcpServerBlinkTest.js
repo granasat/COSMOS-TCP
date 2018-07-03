@@ -18,7 +18,7 @@ var _ = require('c-struct');
 var soh_t = {
     length : 0,
     id : 1,
-    delay: 1000
+    delay: 250
 };
 
 var _soh_t = new _.Schema({
@@ -56,7 +56,7 @@ var server = net.createServer(function(socket) {
         console.log(buff);
 
         socket.write(buff);
-    }, 1000);
+    }, soh_t.delay);
 });
 
 server.listen(config.web_port, config.web_host);
