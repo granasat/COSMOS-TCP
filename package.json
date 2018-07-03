@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/granasat/GranaSatDashboard#readme",
   "dependencies": {
+    "c-struct": "0.0.5",
     "colors": "^1.1.2",
     "dateformat": "^1.0.12",
     "mysql": "^2.11.1"
