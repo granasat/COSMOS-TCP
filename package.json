@@ -1,0 +1,28 @@
+{
+  "name": "cosmos-tcpserver",
+  "version": "1.0.0",
+  "description": "GranaSAT Dashboard",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/granasat/GranaSatDashboard.git"
+  },
+  "author": "Granasat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/granasat/GranaSatDashboard/issues"
+  },
+  "homepage": "https://github.com/granasat/GranaSatDashboard#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "dateformat": "^1.0.12",
+    "mysql": "^2.11.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-wiredep": "^3.0.1"
+  }
+}
