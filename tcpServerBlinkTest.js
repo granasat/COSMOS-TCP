@@ -40,11 +40,14 @@ var net = require('net');
 //Interval
 var interval;
 
-var server = net.createServer(function(socket) {
-    socket.on('data', function (input) {
-        log("Received data: " + input.toString('utf8'), "info");
+var server = net.createServer(function(socket) {            //Callback function called when 'connection' event of net is called
+    log("New connection", "info");
+    createInterval(socket);
 
-        soh_t.delay = input.toString('utf8').charCodeAt(0);
+    socket.on('data', function (input) {
+        soh_t.delay = input.readUIntLE(0, 1);
+
+        log("Received data: " + soh_t.delay.toString(), "info");
 
         //Changing delay of interval
         clearInterval(interval);
@@ -60,10 +63,6 @@ var server = net.createServer(function(socket) {
         log("Connection terminated caused by error", "info");
         clearInterval(interval);
     });
-
-    log("New connection", "info");
-
-    createInterval(socket);
 });
 
 server.listen(config.web_port, config.web_host);
