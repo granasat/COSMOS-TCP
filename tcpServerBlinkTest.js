@@ -37,14 +37,41 @@ var config = require('./config.json');
 
 var net = require('net');
 
+//Interval
+var interval;
+
 var server = net.createServer(function(socket) {
     socket.on('data', function (input) {
         log("Received data: " + input.toString('utf8'), "info");
 
         soh_t.delay = input;
+
+        //Changing delay of interval
+        clearInterval(interval);
+        createInterval(socket)
     });
 
-    setInterval(function () {
+    socket.on('end', function () {
+        log("Connection terminated", "info");
+       clearInterval(interval);
+    });
+
+    socket.on('error', function () {
+        log("Connection terminated caused by error", "info");
+        clearInterval(interval);
+    });
+
+    log("New connection", "info");
+
+    createInterval(socket);
+});
+
+server.listen(config.web_port, config.web_host);
+console.log("Listening on port " + config.web_port + " on " + config.web_host);
+
+
+function createInterval(socket) {
+    interval = setInterval(function () {
         soh_t.length = Object.keys(soh_t).length;
 
         var buff = _.packSync('soh_t', {
@@ -57,9 +84,4 @@ var server = net.createServer(function(socket) {
 
         socket.write(buff);
     }, soh_t.delay);
-});
-
-server.listen(config.web_port, config.web_host);
-console.log("Listening on port " + config.web_port + " on " + config.web_host);
-
-
+}
