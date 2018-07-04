@@ -44,11 +44,11 @@ var server = net.createServer(function(socket) {
     socket.on('data', function (input) {
         log("Received data: " + input.toString('utf8'), "info");
 
-        soh_t.delay = input;
+        soh_t.delay = input.toString('utf8').charCodeAt(0);
 
         //Changing delay of interval
         clearInterval(interval);
-        createInterval(socket)
+        createInterval(socket);
     });
 
     socket.on('end', function () {
@@ -83,5 +83,5 @@ function createInterval(socket) {
         console.log(buff);
 
         socket.write(buff);
-    }, soh_t.delay);
+    }, 500);
 }
