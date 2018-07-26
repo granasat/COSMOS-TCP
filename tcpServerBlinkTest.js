@@ -79,8 +79,6 @@ function createInterval(socket) {
             delay : soh_t.delay
         });
 
-        console.log(buff);
-
         socket.write(buff);
     }, 500);
 }
