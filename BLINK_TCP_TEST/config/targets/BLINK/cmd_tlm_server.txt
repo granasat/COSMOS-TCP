@@ -1,0 +1,2 @@
+INTERFACE BLINKINT tcpip_client_interface.rb localhost 1337 1337 10.0 nil LENGTH 0 8 0 1
+  TARGET BLINK
