@@ -42,7 +42,7 @@ var server = net.createServer(function(socket) {            //Callback function 
     direwolf.stdout.on('data', function (data) {
         var header = createHeader(primHeader.version, primHeader.pType, primHeader.secHeaderFlag, 0, primHeader.seqFlag,
             primHeader.seqCount, (data.length - 1).toString(2));      //Length minus 1 see doc
-        
+
         socket.write(Buffer.concat([header, data], header.length + data.length));     //Write the header first and then the data
     });
 
