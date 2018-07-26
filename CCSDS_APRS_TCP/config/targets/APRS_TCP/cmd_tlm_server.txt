@@ -1,0 +1,9 @@
+# This is a segment of the main cmd_tlm_server.txt that will be used with
+# AUTO_INTERFACE_TARGETS or INTERFACE_TARGET
+
+# NOTE: This line must be modified to match how your actual target connects.
+# See http://cosmosrb.com/docs/interfaces/ for more information.
+INTERFACE APRS_TCP_INT tcpip_client_interface.rb localhost 1337 1337 10.0 nil LENGTH 32 16 7
+  TARGET APRS_TCP
+  # Add in the OverrideProtocol to allow override_tlm("APRS_TCP STATUS STRING = 'HI'")
+  PROTOCOL READ_WRITE OverrideProtocol
